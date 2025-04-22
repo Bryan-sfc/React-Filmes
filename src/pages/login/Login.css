@@ -1,0 +1,46 @@
+/* A mãe de todos */
+.main_login{
+    display: flex;
+    height: 100vh;
+}
+
+
+/* Banner da  Esquerda: */
+.banner{
+    background-image: url("../../assets/img/fundoLogin.png");
+    flex: 1;
+
+    /* Modificar algumas características da imagem */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* Form de Login da direita: */
+.section_login{
+    flex: 1;
+
+    background-color: #CC3F55;
+
+
+    /* Centraliza o campo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section_login img {
+    width: 200px;
+    height: 80px;
+}
+
+.form_login {
+    color: white;
+}
+
+.form_login h1{
+    /* Vai deixar o titúlo com letra maiúsculas */
+    text-transform: uppercase;
+}
