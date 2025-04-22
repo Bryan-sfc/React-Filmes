@@ -1,5 +1,6 @@
 import Logo from "../../assets/img/logo.svg";
 import "./Login.css"
+import Botao from "../../components/botao/Botao";
 
 const Login = () =>  {
     return (
@@ -9,23 +10,19 @@ const Login = () =>  {
                 <img src={Logo} alt="Logo do Filmoteca"/>
 
                 <form action="" className="form_login">
-
                     <h1>Login</h1>
-                    <div>
-                        <div>
+                    <div className="campos_login">
+                        <div className="campo_input">
                             <label htmlFor="email">Email:</label>
                             <input type="Email" name="email" placeholder="Digite seu Email"/>
                         </div>
 
-                        <div>
+                        <div className="campo_input">
                             <label htmlFor="senha">Senha:</label>
                             <input type="Password" name="senha" placeholder="Digite sua Senha"/>
                         </div>
                     </div>
-
-                    <div>
-                        <button>Entrar</button>
-                    </div>
+                    <Botao/>
                 </form>
             </section>
         </main>
