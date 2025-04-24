@@ -1,7 +1,7 @@
 //chamar as telas LOGIN
 
 import './App.css';
-import CadastroFilme from './pages/cadastroFilme/Cadastro.Filme';
+import CadastroFilme from './pages/cadastroFilme/CadastroFilme';
 // import Login from './pages/login/Login.jsx';
 
 function App() {
