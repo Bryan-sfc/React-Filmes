@@ -14,7 +14,7 @@ const Lista = () => {
                     {/* cabeçalho da tabela: */}
                     <thead>
                         {/* tr => table row */}
-                        <tr className="cabecalho">
+                        <tr className="table_cabecalho">
                             {/* th => table head */}
                             <th>Nome</th>
                             <th>Gênero</th>
