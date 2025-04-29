@@ -15,10 +15,10 @@ const Cadastro = (props) => {
                     <div className="campo_cad_genero" style={{display:props.visibilidade}}>
                         <label htmlFor="genero">Gênero</label>
                         <select name="genero" id="">
-                            <option  value="" disabled selected>Selecione</option>
+                            <option value="" disabled selected>Selecione</option>
                             <option value="">Bolsonaro</option>
                             <option value="">Campeonato de Facada</option>
-                            <option value="">Maconha</option>
+                            <option value="">Plugados</option>
                         </select>
                     </div>
                     <Botao nomeDoBotao={props.nomeDoBotao}/>

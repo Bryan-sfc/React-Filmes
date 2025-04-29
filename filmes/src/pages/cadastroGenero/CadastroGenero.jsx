@@ -15,7 +15,8 @@ const CadastroGenero = () => {
                     nomeDoBotao="Cadastrar"
                 />
                 <Lista
-                    Lista="Lista de Gêneros"
+                    tituloLista="Lista de Gêneros"
+                    visivel="none"
                 />
             </main>
             <Footer/>

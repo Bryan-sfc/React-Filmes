@@ -5,18 +5,18 @@ import Header from "../../components/header/Header";
 import Lista from "../../components/lista/Lista";
 
 const CadastroFilme = () => {
-    return(
+    return (
         <>
             <Header/>
             <main>
-                <Cadastro 
+                <Cadastro
                     tituloCadastro="Cadastro de Filme"
                     campoPlaceholder="Filme"
                     nomeDoBotao="Cadastrar"
                 />
 
                 <Lista
-                    Lista="Lista de Filmes"
+                    tituloLista="Lista de Filmes"
                 />
             </main>
             <Footer/>
