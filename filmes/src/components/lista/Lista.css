@@ -37,6 +37,8 @@
 
 .tabela table {
     width: 100%;
+
+    border-collapse: collapse;
 }
 
 .table_cabecalho :first-child {
@@ -52,9 +54,39 @@
 }
 
 .item_lista td {
-    padding: 20px 0 5px 0;
+    padding: 20px 0 10px 0;
 }
 
 .item_lista {
-    text-align: center
+    text-align: center;
+    border-bottom: solid 1px #73061B20;
+}
+
+@media screen and (max-width: 768px){
+    /* 1px - 768px */
+    .tabela thead {
+        display: none;
+    }
+
+    .item_lista td {
+        display: grid;
+        text-align: left;
+        padding: 10px 10px 10px 0;    
+        grid-template-columns: 10ch auto;
+    }
+
+    .item_lista td::before{
+        content: attr(data-cell) ":";
+        font-weight: 700;
+        width: 80px;
+        text-align: left;
+    }
+
+    .item_lista td:last-child{
+        margin-bottom: 24px;
+    }
+
+    .item_lista td:first-child{
+        margin-top: 24px;
+    }
 }

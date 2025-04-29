@@ -3,10 +3,10 @@ import "./Lista.css";
 import Editar from "../../assets/img/pen-to-square-solid.svg"
 import Excluir from "../../assets/img/trash-can-regular.svg"
 
-const Lista = () => {
+const Lista = (props) => {
     return (
         <section className="layout_grid listagem">
-            <h1>Lista dos Filmes</h1>
+            <h1>{props.Lista}</h1>
             <hr />
 
             <div className="tabela">
@@ -25,10 +25,17 @@ const Lista = () => {
                     {/* tbody => corpo da tabela */}
                     <tbody>
                         <tr className="item_lista">
-                            <td>Velozes e Furiosos</td>
-                            <td>Ação</td>
-                            <td><img src={Editar} alt="Caneta" /></td>
-                            <td><img src={Excluir} alt="Lixeira" /></td>
+                            <td data-cell="Nome">Harry Potter e a Pedra Filosofal</td>
+                            <td data-cell="Gênero">Ação</td>
+                            <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" /></td>
+                        </tr>
+                        
+                        <tr className="item_lista">
+                            <td data-cell="Nome">Harry Potter e a Pedra Filosofal</td>
+                            <td data-cell="Gênero">Ação</td>
+                            <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" /></td>
                         </tr>
                     </tbody>
                 </table>
