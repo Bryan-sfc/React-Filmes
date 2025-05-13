@@ -20,6 +20,7 @@ const Lista = (props) => {
                             <th style={{display:props.visivel}}>Gênero</th>
                             <th>Editar</th>
                             <th>Excluir</th>
+                            <th></th>
                         </tr>
                     </thead>
                     {/* tbody => corpo da tabela */}
