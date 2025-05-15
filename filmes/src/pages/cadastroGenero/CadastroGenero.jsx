@@ -13,6 +13,8 @@ import Lista from "../../components/lista/Lista";
 const CadastroGenero = () => {
     //nome do gênero
     const [genero, setGenero] = useState("");
+    const [listaGenero, setListaGenero] = useState([]);
+    // const [itemDelete, setItemDelete] = useState([]);
 
     function alerta(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -32,8 +34,30 @@ const CadastroGenero = () => {
         });
     }
 
-    async function cadastrarGenero(evt) {
-        evt.preventDefault();
+    async function deletarGenero(generoId, titulo, mensagem, icone) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Você não poderá desfazer esta ação!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, apagar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                api.delete(`genero/${generoId.idGenero}`);
+                alerta("success", "Gênero Excluido!")
+            }
+        }).catch(error => {
+            console.log(error);
+            alerta("error", "Erro ao Excluir!");
+        });
+    }
+    listarGenero();
+
+    async function cadastrarGenero(e) {
+        e.preventDefault();
         //Verificar se o input está vindo vazio
         if (genero.trim() != "") {
             //try => tentar(o esperado)
@@ -41,7 +65,7 @@ const CadastroGenero = () => {
             try {
                 //cadastrar um genero: post
                 await api.post("genero", { nome: genero });
-                alerta("Sucess", "Cadastro realizado com sucesso")
+                alerta("success", "Cadastro realizado com sucesso")
                 setGenero("");
             } catch (error) {
                 console.log(error);
@@ -50,8 +74,21 @@ const CadastroGenero = () => {
         } else {
             alerta("warning", "Preencha o campo!")
         }
-
     }
+
+    async function listarGenero() {
+        try {
+            //await -> Aguarde ter uma resposta da solicitação  
+            const resposta = await api.get("genero");
+
+            console.log(resposta.data);
+
+            setListaGenero(resposta.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     //Teste: Validar o genero
     // useEffect(() => {
@@ -59,6 +96,11 @@ const CadastroGenero = () => {
 
     // }, [genero]);
     //Fim do teste 
+
+    //Assim que a página renderizar o metodo listarGenero() será chamado
+    useEffect(() => {
+        listarGenero();
+    }, [])
 
     return (
         <>
@@ -82,6 +124,10 @@ const CadastroGenero = () => {
                 <Lista
                     tituloLista="Lista de Gêneros"
                     visivel="none"
+
+                    //Atribuir para, lista o meu estado atual:
+                    lista={listaGenero}
+                    deletarGenero={deletarGenero}
                 />
             </main>
             <Footer />

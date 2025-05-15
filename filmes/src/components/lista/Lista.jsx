@@ -17,20 +17,40 @@ const Lista = (props) => {
                         <tr className="table_cabecalho">
                             {/* th => table head */}
                             <th>Nome</th>
-                            <th style={{display:props.visivel}}>Gênero</th>
+                            <th style={{ display: props.visivel }}>Gênero</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                             <th></th>
                         </tr>
                     </thead>
                     {/* tbody => corpo da tabela */}
-                    <tbody>
-                        <tr className="item_lista">
-                            <td data-cell="Nome">Harry Potter e a Pedra Filosofal</td>
-                            <td data-cell="Gênero" style={{display:props.visivel}}>Ação</td>
-                            <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
-                            <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" /></td>
-                        </tr>
+                    <tbody id="tabela_excluir">
+                        {/* verificar se a lista está vindo vazia */}
+                        {props.lista && props.lista.length > 0 ? (
+                            props.lista.map((item) => (
+                                <tr className="item_lista" key={item.idGenero}>
+                                    <td data-cell="Nome">{item.nome}</td>
+                                    <td data-cell="Gênero" style={{ display: props.visivel }}>Ação</td>
+
+                                    <td data-cell="Editar">
+                                        <button className="botao_edicao">
+                                            <img src={Editar} alt="Caneta" />
+                                        </button>
+                                    </td>
+
+                                    <td data-cell="Excluir" className="botao_edicao">
+                                        <img src={Excluir}
+                                            alt="Lixeira"
+                                            onClick={() => (props.deletarGenero(item))}
+                                        />
+                                    </td>
+                                </tr>
+                            ))
+                        ) :
+                            (
+                                <p>Nenhum gênero foi encontrado.</p>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
