@@ -44,9 +44,9 @@ const CadastroGenero = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sim, apagar!',
             cancelButtonText: 'Cancelar',
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                api.delete(`genero/${id.idGenero}`);
+                await api.delete(`genero/${id.idGenero}`);
                 alerta("success", "Gênero Excluido!")
             }
         }).catch(error => {
@@ -70,7 +70,7 @@ const CadastroGenero = () => {
         });
         if (novoGenero) {
             try {
-                api.put(`genero/${genero.idGenero}`,
+                await api.put(`genero/${genero.idGenero}`,
                     {nome: novoGenero});
                 alerta("success", "Gênero Modificado!")
             } catch (error) {
@@ -126,7 +126,7 @@ const CadastroGenero = () => {
     useEffect(() => {
         listarGenero();
     }, [listaGenero])
-
+    
     return (
         <>
             <Header />
