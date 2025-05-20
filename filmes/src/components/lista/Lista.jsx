@@ -32,16 +32,18 @@ const Lista = (props) => {
                                     <td data-cell="Nome">{item.nome}</td>
                                     <td data-cell="Gênero" style={{ display: props.visivel }}>Ação</td>
 
-                                    <td data-cell="Editar">
-                                        <button className="botao_edicao">
-                                            <img src={Editar} alt="Caneta" />
-                                        </button>
+                                    <td data-cell="Editar" className="botao_edicao">
+                                        <img src={Editar}
+                                            id="mensagem"
+                                            alt="Caneta"
+                                            onClick={() => (props.funcEditar(item))}
+                                        />
                                     </td>
 
                                     <td data-cell="Excluir" className="botao_edicao">
                                         <img src={Excluir}
                                             alt="Lixeira"
-                                            onClick={() => (props.deletarGenero(item))}
+                                            onClick={() => (props.funcExcluir(item))}
                                         />
                                     </td>
                                 </tr>
@@ -54,6 +56,15 @@ const Lista = (props) => {
                     </tbody>
                 </table>
             </div>
+            {/* <div className="pagination">
+                <div className="first">&#171</div>
+                <div className="prev">&lt</div>
+                <div className="numbers">
+                    <div>l</div>
+                </div>
+                <div className="next">&gt</div>
+                <div className="last">&#187</div>
+            </div> */}
         </section>
     )
 }

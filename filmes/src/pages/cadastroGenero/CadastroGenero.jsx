@@ -34,7 +34,7 @@ const CadastroGenero = () => {
         });
     }
 
-    async function deletarGenero(generoId, titulo, mensagem, icone) {
+    async function deletarGenero(id) {
         Swal.fire({
             title: 'Tem certeza?',
             text: "Você não poderá desfazer esta ação!",
@@ -46,7 +46,7 @@ const CadastroGenero = () => {
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
-                api.delete(`genero/${generoId.idGenero}`);
+                api.delete(`genero/${id.idGenero}`);
                 alerta("success", "Gênero Excluido!")
             }
         }).catch(error => {
@@ -54,7 +54,31 @@ const CadastroGenero = () => {
             alerta("error", "Erro ao Excluir!");
         });
     }
-    listarGenero();
+
+    async function editarGenero(genero) {
+        const { value: novoGenero } = await Swal.fire({
+            title: "Modifique seu Gênero",
+            input: "text",
+            inputLabel: "Novo Gênero",
+            inputValue: genero.nome,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "O campo não pode estar vazio!";
+                }
+            }
+        });
+        if (novoGenero) {
+            try {
+                api.put(`genero/${genero.idGenero}`,
+                    {nome: novoGenero});
+                alerta("success", "Gênero Modificado!")
+            } catch (error) {
+                
+            }
+            Swal.fire(`Seu novo Gênero: ${novoGenero}`);
+        }
+    }
 
     async function cadastrarGenero(e) {
         e.preventDefault();
@@ -67,6 +91,7 @@ const CadastroGenero = () => {
                 await api.post("genero", { nome: genero });
                 alerta("success", "Cadastro realizado com sucesso")
                 setGenero("");
+                listarGenero();
             } catch (error) {
                 console.log(error);
                 alerta("error", "Erro! Entre em contato com o suporte!")
@@ -81,7 +106,7 @@ const CadastroGenero = () => {
             //await -> Aguarde ter uma resposta da solicitação  
             const resposta = await api.get("genero");
 
-            console.log(resposta.data);
+            // console.log(resposta.data);
 
             setListaGenero(resposta.data);
         } catch (error) {
@@ -100,7 +125,7 @@ const CadastroGenero = () => {
     //Assim que a página renderizar o metodo listarGenero() será chamado
     useEffect(() => {
         listarGenero();
-    }, [])
+    }, [listaGenero])
 
     return (
         <>
@@ -127,7 +152,9 @@ const CadastroGenero = () => {
 
                     //Atribuir para, lista o meu estado atual:
                     lista={listaGenero}
-                    deletarGenero={deletarGenero}
+                    funcExcluir={deletarGenero}
+                    // editarGenero={editarGenero}
+                    funcEditar={editarGenero}
                 />
             </main>
             <Footer />
