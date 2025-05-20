@@ -16,7 +16,7 @@ const CadastroGenero = () => {
     const [listaGenero, setListaGenero] = useState([]);
     // const [itemDelete, setItemDelete] = useState([]);
 
-    function alerta(icone, mensagem) {
+    function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -47,11 +47,11 @@ const CadastroGenero = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await api.delete(`genero/${id.idGenero}`);
-                alerta("success", "Gênero Excluido!")
+                alertar("success", "Gênero Excluido!")
             }
         }).catch(error => {
             console.log(error);
-            alerta("error", "Erro ao Excluir!");
+            alertar("error", "Erro ao Excluir!");
         });
     }
 
@@ -72,7 +72,7 @@ const CadastroGenero = () => {
             try {
                 await api.put(`genero/${genero.idGenero}`,
                     {nome: novoGenero});
-                alerta("success", "Gênero Modificado!")
+                alertar("success", "Gênero Modificado!")
             } catch (error) {
                 
             }
@@ -89,15 +89,15 @@ const CadastroGenero = () => {
             try {
                 //cadastrar um genero: post
                 await api.post("genero", { nome: genero });
-                alerta("success", "Cadastro realizado com sucesso")
+                alertar("success", "Cadastro realizado com sucesso")
                 setGenero("");
                 listarGenero();
             } catch (error) {
                 console.log(error);
-                alerta("error", "Erro! Entre em contato com o suporte!")
+                alertar("error", "Erro! Entre em contato com o suporte!")
             }
         } else {
-            alerta("warning", "Preencha o campo!")
+            alertar("warning", "Preencha o campo!")
         }
     }
 
