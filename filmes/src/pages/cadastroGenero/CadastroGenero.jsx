@@ -71,10 +71,10 @@ const CadastroGenero = () => {
         if (novoGenero) {
             try {
                 await api.put(`genero/${genero.idGenero}`,
-                    {nome: novoGenero});
+                    { nome: novoGenero });
                 alertar("success", "Gênero Modificado!")
             } catch (error) {
-                
+
             }
             Swal.fire(`Seu novo Gênero: ${novoGenero}`);
         }
@@ -126,7 +126,7 @@ const CadastroGenero = () => {
     useEffect(() => {
         listarGenero();
     }, [listaGenero])
-    
+
     return (
         <>
             <Header />
@@ -152,6 +152,7 @@ const CadastroGenero = () => {
 
                     //Atribuir para, lista o meu estado atual:
                     lista={listaGenero}
+                    tipoLista="genero"
                     funcExcluir={deletarGenero}
                     // editarGenero={editarGenero}
                     funcEditar={editarGenero}

@@ -13,6 +13,8 @@ const CadastroFilme = () => {
     const [genero, setGenero] = useState("");
     const [filme, setFilme] = useState("");
 
+    const [listaFilme, setListaFilme] = useState([]);
+
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
             toast: true,
@@ -46,21 +48,32 @@ const CadastroFilme = () => {
 
         if (filme.trim() !== "") {
             try {
-                await api.post("filme", { titulo: filme, IdGenero: genero });
-                alertar("success", "Sucesso! Cadastro realizado com sucesso!");
+                await api.post("filme", {titulo: filme, idGenero: genero});
+
+                alertar("success", "Cadastro realizado com sucesso")
                 setFilme("");
                 setGenero("");
-                
             } catch (error) {
+                alertar("error", "Erro! Entre em contato com o suporte!")
                 console.log(error);
             }
         } else {
-            alertar("success", "Sucesso! Filme Cadastrado");
+            alertar("warning", "Preencha o campo!")
+        }
+    }
+
+    async function listarFilme() {
+        try {
+            const resposta = await api.get("filme");
+            setListaFilme(resposta.data);
+        } catch (error) {
+            console.log(error);
         }
     }
 
     useEffect(() => {
         listarGenero();
+        listarFilme();
     }, [])
 
     return (
@@ -85,6 +98,9 @@ const CadastroFilme = () => {
 
                 <Lista
                     tituloLista="Lista de Filmes"
+                    tipoLista="filme"
+
+                    lista={listaFilme}
                 />
             </main>
             <Footer />

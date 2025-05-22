@@ -28,9 +28,12 @@ const Lista = (props) => {
                         {/* verificar se a lista está vindo vazia */}
                         {props.lista && props.lista.length > 0 ? (
                             props.lista.map((item) => (
-                                <tr className="item_lista" key={item.idGenero}>
-                                    <td data-cell="Nome">{item.nome}</td>
-                                    <td data-cell="Gênero" style={{ display: props.visivel }}>Ação</td>
+                                <tr className="item_lista" 
+                                    key={props.tipoLista == "genero" ? item.idGenero : item.idFilme}>
+
+                                    <td data-cell="Nome">{props.tipoLista == "genero" ? item.nome : item.titulo}</td>
+
+                                    <td data-cell="Gênero" style={{ display: props.visivel }}>{item.genero?.nome}</td>
 
                                     <td data-cell="Editar" className="botao_edicao">
                                         <img src={Editar}
